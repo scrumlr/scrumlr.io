@@ -1,0 +1,51 @@
+@import '../../../constants/style';
+
+.account-transfer-modal_info {
+  word-wrap: break-word;
+  width: 375px;
+}
+
+.account-transfer-modal__link {
+  display: flex;
+  max-width: 375px;
+  margin-top: $default-margin;
+}
+
+.account-transfer-modal__link-text {
+  overflow: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  cursor: text;
+  margin: 5px 5px 5px 2px;
+
+  color: $color-dark-gray;
+  font-size: 20px;
+
+  outline: solid 2px $color-alternative-gray;
+}
+
+.account-transfer-modal__link-text::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.account-transfer-modal__copy-button {
+  border: 0;
+  background: none;
+  height: 33px;
+  align-self: center;
+
+  background: $color-mint;
+}
+
+.account-transfer-modal__copy-button:not(:disabled):focus,
+.account-transfer-modal__copy-button:not(:disabled):hover {
+  background: darken($color-mint, 15%);
+  box-shadow: 0 $base-unit*2 $base-unit*4 0 transparentize($color-dark, .85);
+}
+
+.account-transfer-modal__copy-button .account-transfer-modal__edit-icon * {
+  margin-top: 2px;
+  height: 25px;
+  fill: $color-white;
+}
