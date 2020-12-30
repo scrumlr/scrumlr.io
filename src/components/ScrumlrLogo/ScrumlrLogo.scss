@@ -30,3 +30,21 @@
     stop-color: var(--accent-color);
   }
 }
+
+.scrumlr-logo__text--desktop,
+.scrumlr-logo__underline--desktop {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .scrumlr-logo__text--desktop,
+  .scrumlr-logo__underline--desktop {
+    display: initial;
+  }
+
+  .scrumlr-logo__text--mobile,
+  .scrumlr-logo__underline--mobile {
+    display: none;
+  }
+}
+
