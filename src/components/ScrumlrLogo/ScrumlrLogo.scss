@@ -7,8 +7,12 @@
   --accent-color: blue;
 }
 
-.scrumlr-logo {
+.scrumlr-logo__paths {
   fill: blue;
+}
+
+.scrumlr-logo {
+  height: 48px;
 }
 
 .scrumlr-logo__stop {
@@ -17,7 +21,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .scrumlr-logo {
+  .scrumlr-logo__paths {
     fill: white;
   }
 

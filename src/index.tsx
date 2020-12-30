@@ -1,29 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import {ReactReduxFirebaseProvider } from 'react-redux-firebase';
-import { createFirestoreInstance } from 'redux-firestore';
-import firebase from './firebase';
-import store from './store/store';
 import './index.scss';
-import Header from "./components/Header/Header";
+import store from './store';
+import Router from './routes/Router';
+import { ToastContainer } from 'react-toastify';
+import Parse from 'parse';
 
-const rrfProps = {
-  firebase,
-  config: {},
-  dispatch: store.dispatch,
-  createFirestoreInstance
-};
-
+Parse.initialize('Scrumlr');
+Parse.serverURL = process.env.REACT_APP_SERVER_API_URL || 'http://localhost:4000';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ReactReduxFirebaseProvider {...rrfProps}>
-        <Header>
-          Board Name
-        </Header>
-      </ReactReduxFirebaseProvider>
+      <Router/>
+      <ToastContainer/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

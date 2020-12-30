@@ -4,6 +4,7 @@ import {getColorClassName} from "constants/colors";
 import {ColumnProps} from "components/Column/Column";
 import {ReactComponent as RightArrowIcon} from "assets/icon-arrow-next.svg";
 import {ReactComponent as LeftArrowIcon} from "assets/icon-arrow-previous.svg";
+import ScrumlrLogo from "../ScrumlrLogo/ScrumlrLogo";
 
 export interface BoardProps {
     children: React.ReactElement<ColumnProps> | React.ReactElement<ColumnProps>[];
@@ -93,6 +94,10 @@ const Board = ({ children }: BoardProps) => {
             <style>
                 {`.board { --board__columns: ${columnsCount} }`}
             </style>
+
+            <header className="board__header">
+                <ScrumlrLogo className="board__header-logo" accentColorClassNames={[ 'pink' ]} />
+            </header>
 
             {showPreviousButton && (
                 <button

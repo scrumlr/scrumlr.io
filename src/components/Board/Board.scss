@@ -27,6 +27,17 @@
   scroll-snap-align: start;
 }
 
+.board__header {
+  position: fixed;
+  left: 62px;
+  right: 62px;
+  top: 24px;
+}
+
+.board__header-logo {
+  margin-top: 8px;
+}
+
 .board__spacer-left {
   @include inset-border($top: true, $left: true, $bottom: true);
 }
