@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/icon-focus-36-b</title>
+    <g id="icon/icon-focus-36-b" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-14" transform="translate(7.000000, 11.000000)" stroke="#FFFFFF">
+            <line x1="16" y1="4.01092142" x2="11" y2="9" id="Stroke-1" stroke-width="1.5" stroke-linejoin="round"></line>
+            <polyline id="Stroke-2" stroke-width="1.5" stroke-linecap="square" points="13 4 15.9887034 4 16 4.01092142 16 7"></polyline>
+            <g id="Group-13" stroke-linejoin="round">
+                <path d="M0.8878,2.06182244 C0.8878,0.976287199 1.60696426,0.088122 2.48594279,0.088122 L18.2896572,0.088122 C19.1686357,0.088122 19.8878,0.976287199 19.8878,2.06182244 L19.8878,14.1144216 C19.8878,15.1999568 19.1686357,16.088122 18.2896572,16.088122 L2.48594279,16.088122 C1.60696426,16.088122 0.8878,15.1999568 0.8878,14.1144216 L0.8878,2.06182244 Z" id="Stroke-9" stroke-width="2"></path>
+                <line x1="3.5" y1="13" x2="17.3480567" y2="12.772674" id="Stroke-11" stroke-width="1.5" opacity="0.7" stroke-linecap="round"></line>
+            </g>
+        </g>
+        <path d="M24.5253296,7.53387451 L24.0437012,7.53387451 L25.4566238,7.53387451 C27.703708,7.53387451 30.5253296,10.2851856 30.5253296,12.4455374 L30.5253296,13.5338745 L30.5253296,13.9608154" id="Path" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"></path>
+    </g>
+</svg>

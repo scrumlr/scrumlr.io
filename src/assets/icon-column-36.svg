@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/icon-column-36</title>
+    <g id="icon/icon-column-36" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-column-24" transform="translate(18.000000, 18.000000) rotate(-90.000000) translate(-18.000000, -18.000000) translate(6.000000, 6.000000)">
+            <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+            <rect id="Rectangle" stroke="#FF0069" stroke-width="2" x="3" y="8" width="17" height="8" rx="1"></rect>
+            <path d="M20,2.11889648 L20,2.11889648 L20,3 C20,3.55228475 19.5522847,4 19,4 L4,4 C3.44771525,4 3,3.55228475 3,3 L3,1.91210938 L3,1.91210938" id="Path" stroke="#FF0069" stroke-width="1.5" opacity="0.5"></path>
+            <path d="M20,20.1188965 L20,20.1188965 L20,21 C20,21.5522847 19.5522847,22 19,22 L4,22 C3.44771525,22 3,21.5522847 3,21 L3,19.9121094 L3,19.9121094" id="Path" stroke="#FF0069" stroke-width="1.5" opacity="0.5" transform="translate(11.500000, 20.956055) scale(1, -1) translate(-11.500000, -20.956055) "></path>
+        </g>
+    </g>
+</svg>
