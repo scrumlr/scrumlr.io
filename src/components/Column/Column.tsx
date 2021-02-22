@@ -20,7 +20,7 @@ export interface OwnColumnProps {
 
   /** The unique column id. */
   id: string;
-  phase: {guidedPhase: number, config: PhaseConfiguration};
+  phase: { guidedPhase: number; config: PhaseConfiguration };
 
   isActive: boolean;
 

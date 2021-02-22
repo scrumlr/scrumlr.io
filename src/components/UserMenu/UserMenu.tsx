@@ -13,6 +13,7 @@ import classNames = require('classnames');
 export interface UserMenuProps {
   onSignOut: () => void;
   onDeleteBoard: () => void;
+  onDeleteUser: () => void;
   onPdfExport: () => void;
   onCsvExport: () => void;
   onOpenModal: (modal: ModalType) => void;
@@ -44,6 +45,14 @@ export class UserMenu extends React.Component<UserMenuProps, UserMenuState> {
 
   handleBoardNameChange = (e: any) => {
     this.props.onChangeBoardName(e.target.value);
+  };
+
+  handleDeleteUser = () => {
+    const warning =
+      'Are you sure you want to delete your user data? This action cannot be undone.';
+    if (window.confirm(warning)) {
+      this.props.onDeleteUser();
+    }
   };
 
   render() {
@@ -213,6 +222,13 @@ export class UserMenu extends React.Component<UserMenuProps, UserMenuState> {
             </li>
           </>
         )}
+        <li key="user-menu__delete" className="user_menu__li--hidden-mobile">
+          <MenuItem
+            name="Delete user data"
+            icon="trash"
+            onClick={this.handleDeleteUser}
+          />
+        </li>
         <li key="user-menu__about" className="user_menu__li--hidden-mobile">
           <MenuItem
             name="About"
