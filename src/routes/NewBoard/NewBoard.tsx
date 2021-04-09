@@ -8,18 +8,31 @@ import Parse from "parse";
 import {API} from "api";
 import {getColorForIndex} from "constants/colors";
 
-export type NewBoardProps = RouteComponentProps;
-
-function NewBoard(props: NewBoardProps) {
+function NewBoard(props: RouteComponentProps) {
   const [name, setName] = React.useState(getRandomName());
   function handleChangeName(e: any) {
     const name = (e.target as HTMLInputElement).value;
     setName(name);
   }
 
-  async function onLogin() {
+  async function onAnonymousLogin() {
     await AuthenticationManager.signInAnonymously(name);
     await onCreateBoard();
+  }
+
+  async function onLogout() {
+    await Parse.User.logOut();
+    props.history.push("/");
+  }
+
+  async function onGoogleSignIn() {
+    const redirectURI = await API.signInWithGoogle();
+    window.location.href = redirectURI;
+  }
+
+  async function onGithubSignIn() {
+    const redirectURI = await API.signInWithGithub();
+    window.location.href = redirectURI;
   }
 
   async function onCreateBoard() {
@@ -34,6 +47,15 @@ function NewBoard(props: NewBoardProps) {
     // TODO report error
   }
 
+  if (Parse.User.current()) {
+    return (
+      <div>
+        <Button onClick={onCreateBoard}>Create Board</Button>
+        <Button onClick={onLogout}>Logout</Button>
+      </div>
+    );
+  }
+
   return (
     <div className="new-board">
       <Input
@@ -43,14 +65,16 @@ function NewBoard(props: NewBoardProps) {
         onChange={handleChangeName}
         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
           if (e.key === "Enter") {
-            onLogin();
+            onAnonymousLogin();
           }
         }}
         inputProps={{
           maxLength: 20,
         }}
       />
-      <Button onClick={onLogin}>Login</Button>
+      <Button onClick={onAnonymousLogin}>Login</Button>
+      <Button onClick={onGoogleSignIn}>Sign in with Google</Button>
+      <Button onClick={onGithubSignIn}>Sign in with Github</Button>
     </div>
   );
 }
