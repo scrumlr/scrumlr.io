@@ -19,6 +19,7 @@ export interface BoardServerModel {
     voteLimit: number;
     createdAt: Date;
     updatedAt: Date;
+    readyUsers: string[];
 }
 
 export interface EditableBoardClientModel {
@@ -45,6 +46,7 @@ export interface BoardClientModel extends EditableBoardClientModel {
     createdAt: Date;
     updatedAt: Date;
     dirty: boolean;
+    readyUsers: string[];
 }
 
 export const mapBoardServerToClientModel = (board: BoardServerModel): BoardClientModel => ({
@@ -67,5 +69,6 @@ export const mapBoardServerToClientModel = (board: BoardServerModel): BoardClien
     voteLimit: board.voteLimit,
     createdAt: board.createdAt,
     updatedAt: board.updatedAt,
-    dirty: false
+    dirty: false,
+    readyUsers: board.readyUsers
 });

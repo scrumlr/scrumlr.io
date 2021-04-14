@@ -44,22 +44,18 @@ export const usersReducer = (
 
       return newState;
     }
-    case ActionType.InitializeBoard:
-    case ActionType.UpdatedBoard: {
-      const listOfReadyUsers = action.board.readyUsers;
+    // case ActionType.InitializeBoard:
+    // case ActionType.UpdatedBoard: {
+    //   const listOfReadyUsers = action.board.readyUsers;
 
-      
+    //   const newState = {
+    //     admins: state.admins,
+    //     basic: state.basic,
+    //     all: state.all.map((user) = { ...user, ready: listOfReadyUsers.findIndex(user.id) == 0})
+    //   };    
 
-      const newState = {
-        admins: state.admins,
-        basic: state.basic,
-        all: state.all.map((user) = { ...user, ready: listOfReadyUsers.findIndex(user.id) == 0})
-      };    
-
-
-
-      return newState;
-    }
+    //   return newState;
+    // }
 
   }
   return state;
