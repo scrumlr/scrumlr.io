@@ -11,6 +11,7 @@ import {passBoardMiddleware} from "./middleware/board";
 import {passBoardJoinConfirmationMiddleware} from "./middleware/boardJoinConfirmation";
 import {passColumnMiddleware} from "./middleware/column";
 import {passJoinRequestMiddleware} from "./middleware/joinRequest";
+import {passUserMiddleware} from "./middleware/user";
 import {joinRequestReducer} from "./reducer/joinRequest";
 
 const parseMiddleware = (stateAPI: MiddlewareAPI<any, ApplicationState>) => (dispatch: Dispatch) => (action: ReduxAction) => {
@@ -22,6 +23,7 @@ const parseMiddleware = (stateAPI: MiddlewareAPI<any, ApplicationState>) => (dis
         passColumnMiddleware(stateAPI, dispatch, action);
         passNoteMiddleware(stateAPI, dispatch, action);
         passJoinRequestMiddleware(stateAPI, dispatch, action);
+        passUserMiddleware(stateAPI, dispatch, action);
     }
 }
 

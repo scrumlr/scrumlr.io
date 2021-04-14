@@ -10,6 +10,7 @@ export const UsersActionType = {
    */
   SetUsers: "@@SCRUMLR/setUsers" as "@@SCRUMLR/setUsers",
   SetUserStatus: "@@SCRUMLR/setUserStatus" as "@@SCRUMLR/setUserStatus",
+  SetUserReadyStatus: "@@SCRUMLR/setUserReadyStatus" as "@@SCRUMLR/setUserReadyStatus",
 };
 
 /** Factory or creator class of internal Redux board users object specific actions. */
@@ -44,8 +45,21 @@ export const UsersActionFactory = {
     userId,
     status,
   }),
+
+    /**
+   * Creates an action that should be dispatched when the server notifies about a changed status (ready/unready) of
+   * a user
+   * 
+   * @param userId the user identifier 
+   * @param ready flag which indicates whether the user is ready or unready
+   */
+    setUserReadyStatus: (ready: boolean) => ({
+    type: UsersActionType.SetUserReadyStatus,
+    ready,
+  }),
 };
 
 export type UsersReduxAction =
   | ReturnType<typeof UsersActionFactory.setUsers>
-  | ReturnType<typeof UsersActionFactory.setUserStatus>;
+  | ReturnType<typeof UsersActionFactory.setUserStatus>
+  | ReturnType<typeof UsersActionFactory.setUserReadyStatus>;

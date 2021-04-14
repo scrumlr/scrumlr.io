@@ -7,6 +7,7 @@ export const usersReducer = (
   action: ReduxAction
 ): UsersState => {
   switch (action.type) {
+    // ready property mitnehmen
     case ActionType.SetUsers: {
       const newState = {
         admins: state.admins,
@@ -43,6 +44,23 @@ export const usersReducer = (
 
       return newState;
     }
+    case ActionType.InitializeBoard:
+    case ActionType.UpdatedBoard: {
+      const listOfReadyUsers = action.board.readyUsers;
+
+      
+
+      const newState = {
+        admins: state.admins,
+        basic: state.basic,
+        all: state.all.map((user) = { ...user, ready: listOfReadyUsers.findIndex(user.id) == 0})
+      };    
+
+
+
+      return newState;
+    }
+
   }
   return state;
 };

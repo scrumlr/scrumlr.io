@@ -12,6 +12,7 @@ export interface UserClientModel {
   createdAt: Date;
   updatedAt: Date;
   online: boolean;
+  ready: boolean;
 }
 
 export const mapUserServerToClientModel = (user: UserServerModel,
@@ -22,6 +23,7 @@ export const mapUserServerToClientModel = (user: UserServerModel,
       admin,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
+      ready: false,
       online
     }
   };
