@@ -1,11 +1,8 @@
-import { UsersState } from "types/store";
-import { UserClientModel } from "types/user";
-import { ActionType, ReduxAction } from "../action";
+import {UsersState} from "types/store";
+import {UserClientModel} from "types/user";
+import {ActionType, ReduxAction} from "../action";
 
-export const usersReducer = (
-  state: UsersState = { admins: [], basic: [], all: [] },
-  action: ReduxAction
-): UsersState => {
+export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []}, action: ReduxAction): UsersState => {
   switch (action.type) {
     // ready property mitnehmen
     case ActionType.SetUsers: {
@@ -34,29 +31,28 @@ export const usersReducer = (
       const newState = {
         admins: state.admins,
         basic: state.basic,
-        all: state.all
+        all: state.all,
       };
 
       const user = newState.all.find((member) => member.id === action.userId);
-      if(user){
+      if (user) {
         user.online = action.status;
       }
 
       return newState;
     }
-    // case ActionType.InitializeBoard:
-    // case ActionType.UpdatedBoard: {
-    //   const listOfReadyUsers = action.board.readyUsers;
+    case ActionType.InitializeBoard:
+    case ActionType.UpdatedBoard: {
+      const listOfReadyUsers = action.board.readyUsers;
 
-    //   const newState = {
-    //     admins: state.admins,
-    //     basic: state.basic,
-    //     all: state.all.map((user) = { ...user, ready: listOfReadyUsers.findIndex(user.id) == 0})
-    //   };    
+      const newState = {
+        admins: state.admins,
+        basic: state.basic,
+        all: state.all.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)})),
+      };
 
-    //   return newState;
-    // }
-
+      return newState;
+    }
   }
   return state;
 };

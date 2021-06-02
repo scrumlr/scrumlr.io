@@ -15,15 +15,12 @@ export interface UserClientModel {
   ready: boolean;
 }
 
-export const mapUserServerToClientModel = (user: UserServerModel,
-  {admin, online }: {  admin: boolean; online: boolean; }): UserClientModel => { 
-    return {
-      id: user.objectId,
-      displayName: user.displayName,
-      admin,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-      ready: false,
-      online
-    }
-  };
+export const mapUserServerToClientModel = (user: UserServerModel, {admin, online, ready}: {admin: boolean; online: boolean; ready: boolean}): UserClientModel => ({
+    id: user.objectId,
+    displayName: user.displayName,
+    admin,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+    ready,
+    online,
+  });
