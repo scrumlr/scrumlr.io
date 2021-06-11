@@ -2,14 +2,15 @@ import {UsersState} from "types/store";
 import {UserClientModel} from "types/user";
 import {ActionType, ReduxAction} from "../action";
 
-export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []}, action: ReduxAction): UsersState => {
+export const usersReducer = (state: UsersState = {admins: [], basic: [], all: [], readyUsers: []}, action: ReduxAction): UsersState => {
   switch (action.type) {
-    // ready property mitnehmen
+    // ready property mitnehmen done ?
     case ActionType.SetUsers: {
       const newState = {
         admins: state.admins,
         basic: state.basic,
         all: [] as UserClientModel[],
+        readyUsers: state.readyUsers,
       };
 
       if (action.admin) {
@@ -25,6 +26,13 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
         }
       });
 
+      // TODO set ready state for basic/admin/all users + except ME as in scrumlr v1?
+      const listOfReadyUsers = state.readyUsers;
+
+      newState.admins = newState.admins.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)}));
+      newState.basic = newState.basic.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)}));
+      newState.all = newState.all.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)}));
+
       return newState;
     }
     case ActionType.SetUserStatus: {
@@ -32,6 +40,7 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
         admins: state.admins,
         basic: state.basic,
         all: state.all,
+        readyUsers: state.readyUsers,
       };
 
       const user = newState.all.find((member) => member.id === action.userId);
@@ -46,9 +55,10 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
       const listOfReadyUsers = action.board.readyUsers;
 
       const newState = {
-        admins: state.admins,
-        basic: state.basic,
+        admins: state.admins.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)})),
+        basic: state.basic.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)})),
         all: state.all.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)})),
+        readyUsers: listOfReadyUsers,
       };
 
       return newState;
