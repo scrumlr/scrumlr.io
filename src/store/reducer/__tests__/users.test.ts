@@ -3,7 +3,7 @@ import {usersReducer} from "../users";
 import {ActionFactory} from "../../action";
 import {UserClientModel} from "../../../types/user";
 
-const createUser = (id: string, name: string, admin: boolean): UserClientModel => ({
+const createUser = (id: string, name: string, admin: boolean, ready = true): UserClientModel => ({
   id,
   displayName: name,
   admin,
@@ -21,6 +21,7 @@ describe("users reducer", () => {
       admins: [],
       basic: [],
       all: [],
+      readyUsers: [],
     };
   });
 
@@ -73,12 +74,14 @@ describe("users reducer", () => {
     const user = createUser("1", "Jane Doe", false);
 
     const state1 = usersReducer(initialState, ActionFactory.setUsers([user], false));
+
     expect(state1.all.find((u) => u.id === user.id)?.ready).toBe(false);
 
-    const state2 = usersReducer(state1, ActionFactory.setUserReadyStatus(true));
-    expect(state2.all.find((u) => u.id === user.id)?.ready).toBe(true);
+    const unreadyUser = createUser("2", "Jane Doe", false, true);
 
-    const state3 = usersReducer(state2, ActionFactory.setUserReadyStatus(false));
-    expect(state3.all.find((u) => u.id === user.id)?.ready).toBe(false);
+    const state2 = usersReducer(initialState, ActionFactory.setUsers([unreadyUser], false));
+    // TODO updateBoard
+
+    expect(state2.all.find((u) => u.id === unreadyUser.id)?.ready).toBe(true);
   });
 });

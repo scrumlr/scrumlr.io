@@ -4,7 +4,6 @@ import {ActionType, ReduxAction} from "../action";
 
 export const usersReducer = (state: UsersState = {admins: [], basic: [], all: [], readyUsers: []}, action: ReduxAction): UsersState => {
   switch (action.type) {
-    // ready property mitnehmen done ?
     case ActionType.SetUsers: {
       const newState = {
         admins: state.admins,
@@ -26,7 +25,6 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
         }
       });
 
-      // TODO set ready state for basic/admin/all users + except ME as in scrumlr v1?
       const listOfReadyUsers = state.readyUsers;
 
       newState.admins = newState.admins.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)}));
@@ -51,6 +49,7 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
       return newState;
     }
     case ActionType.InitializeBoard:
+    // TODO setReadyUserStatus action implementieren damits lokal direkt aktualisiert wird und testbar wird anschließend Tests fertig machen
     case ActionType.UpdatedBoard: {
       const listOfReadyUsers = action.board.readyUsers;
 

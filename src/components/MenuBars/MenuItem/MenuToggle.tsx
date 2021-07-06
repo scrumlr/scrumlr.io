@@ -16,9 +16,7 @@ type MenuToggleProps = {
 };
 
 function MenuToggle(props: MenuToggleProps) {
-  // LOOK: The IconChange shows up with delay...
-
-  // local states deleted
+  // Styling: The IconChange shows up with delay...
 
   const currentUser = Parse.User.current();
   const users = useSelector((state: ApplicationState) => state.users.all);
@@ -26,9 +24,8 @@ function MenuToggle(props: MenuToggleProps) {
 
   const Icon = props.icon;
 
-  const onClickReady = () => store.dispatch(ActionFactory.setUserReadyStatus(!me?.ready)); // Completely to Redux Connected ?
+  const onClickReady = () => store.dispatch(ActionFactory.setUserReadyStatus(!me?.ready));
 
-  // isActive changed to me?.ready
   return (
     <button
       className={classNames("menu-item", {"menu-item--active": me?.ready, "menu-item--disabled": !me?.ready}, `menu-item--${props.direction}`)}

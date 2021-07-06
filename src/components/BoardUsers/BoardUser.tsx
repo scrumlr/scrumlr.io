@@ -10,16 +10,20 @@ export interface UserAvatarProps {
 }
 
 const UserAvatar = ({name, avatar, ready}: UserAvatarProps) => (
-    <li className="user-avatar">
-      {avatar ? (
-        <img src={avatar} alt={name} />
-      ) : (
-        <div className="user__initials" title={name}>
-          {getInitials(name)}
-        </div>
-      )}
-      {ready && <ReadyIcon className="user-avatar__ready-icon icon1" />}
-    </li>
-  );
+  <li className="user-avatar">
+    {avatar ? (
+      <img src={avatar} alt={name} />
+    ) : (
+      <div className="user__initials" title={name}>
+        {getInitials(name)}
+      </div>
+    )}
+    {ready && (
+      <div className="user-avatar__ready-icon-wrapper">
+        <ReadyIcon className="user-avatar__ready-icon" />
+      </div>
+    )}
+  </li>
+);
 
 export default UserAvatar;

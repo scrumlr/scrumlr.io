@@ -27,17 +27,20 @@
   content: "+";
 }
 
-.user-avatar__ready-icon {
-  color: #f7f7f7;
+.user-avatar__ready-icon-wrapper {
   background-color: #00e7c2;
-  box-sizing: initial;
-  border-radius: 22px;
+  border-radius: 50%;
   position: absolute;
-  top: -7px;
-  right: -9px;
-  min-width: 20px;
-  height: 20px;
+  top: -5px;
+  right: -3px;
+  min-width: 16px;
+  height: 16px;
   text-align: center;
+}
+
+.user-avatar__ready-icon {
+  width: 12px;
+  height: 15px;
 }
 
 @media (prefers-color-scheme: dark) {

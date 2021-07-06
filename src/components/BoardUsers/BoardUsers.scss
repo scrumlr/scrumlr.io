@@ -13,3 +13,34 @@
 .board-users li {
   display: inline;
 }
+
+.rest-users__ready-wrapper {
+  background-color: #00e7c2;
+  border-radius: 22px;
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  min-width: 25px;
+  height: 16px;
+  text-align: center;
+}
+
+.rest-users__ready-count {
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  margin-left: 3px;
+  margin-right: 1px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.rest-users__ready-icon-wrapper {
+  display: inline-block;
+}
+
+.rest-users__ready-icon {
+  width: 12px;
+  height: 15px;
+  margin-right: 1px;
+}
