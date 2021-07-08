@@ -52,8 +52,8 @@ describe("users reducer", () => {
 
     expect(state2.admins).toEqual([admin]);
     expect(state2.basic).toEqual([user]);
-    expect(state2.all).toContain(admin);
-    expect(state2.all).toContain(user);
+    expect(state2.all).toContainEqual(admin);
+    expect(state2.all).toContainEqual(user);
   });
 
   test("set user status correctly offline/online", () => {
@@ -69,19 +69,20 @@ describe("users reducer", () => {
     expect(state3.all.find((u) => u.id === user.id)?.online).toBe(true);
   });
 
-  // TODO
   test("set user ready/unready", () => {
     const user = createUser("1", "Jane Doe", false);
 
     const state1 = usersReducer(initialState, ActionFactory.setUsers([user], false));
-
     expect(state1.all.find((u) => u.id === user.id)?.ready).toBe(false);
 
-    const unreadyUser = createUser("2", "Jane Doe", false, true);
+    const state2 = usersReducer(state1, ActionFactory.setUserReadyStatus(user.id, true));
+    expect(state2.all.find((u) => u.id === user.id)?.ready).toBe(true);
+    expect(state2.readyUsers.includes(user.id)).toBe(true);
 
-    const state2 = usersReducer(initialState, ActionFactory.setUsers([unreadyUser], false));
-    // TODO updateBoard
+    const state3 = usersReducer(state2, ActionFactory.setUserReadyStatus(user.id, false));
+    expect(state3.all.find((u) => u.id === user.id)?.ready).toBe(false);
+    expect(state3.readyUsers.includes(user.id)).toBe(false);
 
-    expect(state2.all.find((u) => u.id === unreadyUser.id)?.ready).toBe(true);
+    // TODO frontend Tests
   });
 });

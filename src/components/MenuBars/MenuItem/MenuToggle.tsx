@@ -24,7 +24,7 @@ function MenuToggle(props: MenuToggleProps) {
 
   const Icon = props.icon;
 
-  const onClickReady = () => store.dispatch(ActionFactory.setUserReadyStatus(!me?.ready));
+  const onClickReady = () => store.dispatch(ActionFactory.setUserReadyStatus(me!.id, !me?.ready));
 
   return (
     <button

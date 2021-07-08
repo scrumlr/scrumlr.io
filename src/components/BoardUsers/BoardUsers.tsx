@@ -5,8 +5,8 @@ import {useSelector} from "react-redux";
 import {ApplicationState} from "types/store";
 import {ReactComponent as ReadyIcon} from "assets/icon-ready.svg";
 
-// it might be a good idead to set this number dynamically (e.g., according to the device: desktop vs. mobile)
-const NUM_OF_DISPLAYED_USERS = 0; // changed for testing -> TODO revert to 4
+// it might be a good idea to set this number dynamically (e.g., according to the device: desktop vs. mobile)
+const NUM_OF_DISPLAYED_USERS = 4; // changed for testing -> TODO revert to 4?
 
 const BoardUsers = () => {
   const users = useSelector((state: ApplicationState) => state.users.all);

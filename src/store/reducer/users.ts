@@ -15,7 +15,11 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
       if (action.admin) {
         newState.admins = action.users;
       } else {
-        newState.basic = action.users;
+        action.users.forEach((user) => {
+          if (!state.admins.find((admin) => admin.id === user.id) && state.admins.length !== 0) {
+            newState.basic.push(user);
+          }
+        });
       }
 
       newState.all = [...newState.admins];
@@ -49,7 +53,6 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
       return newState;
     }
     case ActionType.InitializeBoard:
-    // TODO setReadyUserStatus action implementieren damits lokal direkt aktualisiert wird und testbar wird anschließend Tests fertig machen
     case ActionType.UpdatedBoard: {
       const listOfReadyUsers = action.board.readyUsers;
 
@@ -59,6 +62,35 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
         all: state.all.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)})),
         readyUsers: listOfReadyUsers,
       };
+
+      return newState;
+    }
+    case ActionType.SetUserReadyStatus: {
+      const newState = {
+        admins: state.admins,
+        basic: state.basic,
+        all: state.all,
+        // admins: state.admins.map((user) => ({...user, ready: user.id === action.userId && true})),
+        // basic: state.basic.map((user) => ({...user, ready: user.id === action.userId && true})),
+        // all: state.all.map((user) => ({...user, ready: user.id === action.userId && true})),
+        readyUsers: state.readyUsers,
+      };
+
+      // TODO cleanup
+      const userAdmin = newState.admins.find((user) => user.id == action.userId);
+      const userBasic = newState.basic.find((user) => user.id == action.userId);
+      const userAll = newState.all.find((user) => user.id == action.userId);
+
+      if (userAdmin) userAdmin.ready = action.ready;
+      if (userBasic) userBasic.ready = action.ready;
+      if (userAll) userAll.ready = action.ready;
+      //
+
+      if (action.ready) {
+        if (!newState.readyUsers.includes(action.userId)) newState.readyUsers.push(action.userId);
+      } else {
+        newState.readyUsers = newState.readyUsers.filter((user) => user !== action.userId);
+      }
 
       return newState;
     }

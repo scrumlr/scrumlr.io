@@ -53,8 +53,9 @@ export const UsersActionFactory = {
    * @param userId the user identifier
    * @param ready flag which indicates whether the user is ready or unready
    */
-  setUserReadyStatus: (ready: boolean) => ({
+  setUserReadyStatus: (userId: string, ready: boolean) => ({
     type: UsersActionType.SetUserReadyStatus,
+    userId,
     ready,
   }),
 };
