@@ -23,6 +23,8 @@ const BoardUsers = () => {
     <ul className="board-users">
       {them.length > 0 && (
         <li className="rest-users">
+          {" "}
+          //
           <div className="rest-users__count">{them.length}</div>
           <div className="rest-users__ready-wrapper">
             <div className="rest-users__ready-count">{readyThems}</div>

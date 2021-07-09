@@ -82,7 +82,5 @@ describe("users reducer", () => {
     const state3 = usersReducer(state2, ActionFactory.setUserReadyStatus(user.id, false));
     expect(state3.all.find((u) => u.id === user.id)?.ready).toBe(false);
     expect(state3.readyUsers.includes(user.id)).toBe(false);
-
-    // TODO frontend Tests
   });
 });
