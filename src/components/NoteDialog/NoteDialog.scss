@@ -1,19 +1,18 @@
 @import "constants/style";
+@import "components/Note/Note.scss";
 
-$note__border-radius: 16px;
-$note__text-margin-bottom: 9px;
-$note__box-shadow-color: rgba(0, 87, 255, 0.16);
-$note__box-shadow-color-dark-mode: rgba(0, 0, 0, 0.2);
+.note-dialog__header {
+  font-size: 48px;
+  color: $color-white;
+  width: max-content;
+  border-bottom: solid 3px var(--accent-color);
+  padding-bottom: $padding--default;
+  margin: $margin--default 0 $margin--large 0;
+  letter-spacing: $letter-spacing--large;
+  line-height: $line-height--large;
+}
 
-$note__indicator-height: 34px;
-$note__indicator-width: 3px;
-
-$note__author-name-size: 12px;
-$note__author-image-size: 26px;
-$note__author-margin-left: 10px;
-
-.note {
-  cursor: pointer;
+.note-dialog__note {
   padding: $padding--default $padding--medium;
   position: relative;
   border-radius: $note__border-radius;
@@ -21,18 +20,25 @@ $note__author-margin-left: 10px;
   box-shadow: 0 6px 9px 0 $note__box-shadow-color;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   list-style-type: none;
+  z-index: $note-dialog-z-index;
+  min-width: calc(240px + 10vw);
+  width: calc(100vw - 36px);
+  max-width: 380px;
 }
 @media (prefers-color-scheme: dark) {
-  .note {
+  .note-dialog__note {
     background-color: $color-dark-mode-note;
     box-shadow: 0 6px 9px 0 $note__box-shadow-color-dark-mode;
   }
 }
-.note:hover {
-  transform: scale(1.02);
+@media #{$menu-desktop} {
+  .note-dialog__note {
+    max-width: 440px;
+    width: calc(100vw - 32px);
+  }
 }
 
-.note--own-card::before {
+.note-dialog__note--own-card::before {
   content: "";
   display: block;
   position: absolute;
@@ -43,14 +49,14 @@ $note__author-margin-left: 10px;
   background: var(--accent-color);
 }
 
-.note__content {
+.note-dialog__content {
   display: flex;
   width: 100%;
 }
 
-.note__text {
+.note-dialog__text {
+  background: none;
   margin: 0;
-  margin-right: 5px;
   min-height: 3 * $line-height--medium;
   width: 100%;
   color: $color-black;
@@ -64,58 +70,37 @@ $note__author-margin-left: 10px;
   display: -webkit-box;
   margin-bottom: $note__text-margin-bottom;
 }
-@media (prefers-color-scheme: dark) {
-  .note__text {
-    color: $color-white;
-  }
-}
-
-.note__edit {
-  height: 20px;
-  width: 20px;
-  align-self: end;
-  opacity: 0;
-  transition: opacity 500ms ease-out;
-  display: none;
-  color: $color-dark-gray;
+.note-dialog__text:focus {
+  outline: 1px solid $color-dark-gray;
+  outline-offset: 6px;
 }
 @media (prefers-color-scheme: dark) {
-  .note__edit {
+  .note-dialog__text {
     color: $color-white;
   }
-}
-@media screen and (max-width: 1279px) {
-  .note__edit {
-    opacity: 100%;
+  .note-dialog__text:focus {
+    outline: 1px solid $color-white;
   }
 }
-.note:hover > .note__content > .note__edit {
-  opacity: 100%;
-}
 
-.note__edit--own-card {
-  display: block;
-}
-
-.note__author {
+.note-dialog__author {
   display: flex;
   align-items: center;
   // reset css from figure-element:
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
   vertical-align: baseline;
 }
 
-.note__author-image {
+.note-dialog__author-image {
   height: $note__author-image-size;
   width: $note__author-image-size;
   border-radius: 100%;
 }
 
-.note__author-name {
+.note-dialog__author-name {
   margin-left: $note__author-margin-left;
   color: $color-dark-gray;
   font-size: $note__author-name-size;
@@ -123,10 +108,49 @@ $note__author-margin-left: 10px;
   line-height: $line-height--small;
 }
 
-.note__delete-button {
+//Options
+.note-dialog__options {
+  list-style-type: none;
+  position: absolute;
+  margin: 0;
+  bottom: 10px;
+  right: 25px;
+}
+
+@media #{$menu-desktop} {
+  .note-dialog__options {
+    top: 0;
+    right: -80px - $margin--default;
+  }
+}
+
+.note-dialog__option {
+  box-sizing: border-box;
+  display: block;
+}
+
+.note-dialog__option--not-editable {
   display: none;
 }
 
-.note__delete-button--visible {
-  display: block;
+.note-dialog__option + .note-dialog__option {
+  margin-top: $margin--small;
+}
+
+.note-dialog__option-button {
+  height: 32px;
+}
+
+.note-dialog__options-icon {
+  display: flex;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.note-dialog__options-icon svg {
+  fill: #fff;
+  width: 20px;
+  height: 20px;
+  align-self: center;
 }
