@@ -28,7 +28,7 @@
 }
 
 .user-avatar__ready-icon-wrapper {
-  background-color: #00e7c2;
+  background-color: #00e7c2; // TODO extract to variable
   border-radius: 50%;
   position: absolute;
   top: -5px;
@@ -40,7 +40,7 @@
 
 .user-avatar__ready-icon {
   width: 12px;
-  height: 15px;
+  height: 15px; // TODO vertikale zentrierung berücksichtigen?
 }
 
 @media (prefers-color-scheme: dark) {

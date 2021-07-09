@@ -2,6 +2,7 @@ import {UsersState} from "types/store";
 import {UserClientModel} from "types/user";
 import {ActionType, ReduxAction} from "../action";
 
+// TODO me & them einführen here?
 export const usersReducer = (state: UsersState = {admins: [], basic: [], all: [], readyUsers: []}, action: ReduxAction): UsersState => {
   switch (action.type) {
     case ActionType.SetUsers: {
@@ -31,6 +32,7 @@ export const usersReducer = (state: UsersState = {admins: [], basic: [], all: []
 
       const listOfReadyUsers = state.readyUsers;
 
+      // TODO hilfsfunktion?
       newState.admins = newState.admins.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)}));
       newState.basic = newState.basic.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)}));
       newState.all = newState.all.map((user) => ({...user, ready: listOfReadyUsers.includes(user.id)}));

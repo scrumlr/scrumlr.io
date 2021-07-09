@@ -104,6 +104,7 @@ const Board = ({children, name, boardstatus}: BoardProps) => {
   const unreadyUsers = them.filter((user) => user.ready === false);
 
   useEffect(() => {
+    // TODO hier klammern für die if nutzen
     if (unreadyUsers.length === 0 && me?.ready === false && them.length !== 0) Toast.info("You are the last person that is not ready yet. Hurry up!");
   }, [users]);
 

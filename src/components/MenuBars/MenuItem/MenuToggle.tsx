@@ -18,12 +18,14 @@ type MenuToggleProps = {
 function MenuToggle(props: MenuToggleProps) {
   // Styling: The IconChange shows up with delay...
 
+  // TODO 'me' in redux auslagern
   const currentUser = Parse.User.current();
   const users = useSelector((state: ApplicationState) => state.users.all);
   const me = users.find((user) => user.id === currentUser!.id);
 
   const Icon = props.icon;
 
+  // TODO me?! -> me! oder me? einheitlich
   const onClickReady = () => store.dispatch(ActionFactory.setUserReadyStatus(me!.id, !me?.ready));
 
   return (

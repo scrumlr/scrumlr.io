@@ -114,6 +114,7 @@ describe("users", () => {
     expect(newBoardUsers3.container.querySelectorAll(".user__initials")).toHaveLength(1);
     expect(newBoardUsers3.container.querySelector(".rest-users__count")).toHaveTextContent("1");
 
+    // TODO
     // readyUsers Mocken
     // expect(newBoardUsers3.container.querySelector('.rest-users__ready-count')).toHaveTextContent('1');
 

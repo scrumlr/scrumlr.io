@@ -12,11 +12,13 @@ const BoardUsers = () => {
   const users = useSelector((state: ApplicationState) => state.users.all);
   const currentUser = Parse.User.current();
 
+  // TODO me & them logik ggf. in redux auslagern?
   const me = users.find((user) => user.id === currentUser!.id);
   const them = users.filter((user) => user.id !== currentUser!.id && user.online);
 
   const usersToShow = them.splice(0, them.length > NUM_OF_DISPLAYED_USERS ? NUM_OF_DISPLAYED_USERS - 1 : NUM_OF_DISPLAYED_USERS); // removes showed ones from "them"
 
+  // TODO naming: otherReadyUsers ? readyUsersAmongThem ? ...
   const readyThems = them.filter((user) => user.ready).length;
 
   return (
